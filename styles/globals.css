@@ -24,3 +24,10 @@ a {
     background: black;
   }
 }
+
+.Block{
+  background-color: rgb(221, 220, 220);
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
