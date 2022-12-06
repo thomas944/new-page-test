@@ -15,25 +15,30 @@ const testSetup: editableBlock[] = [
     html: "Heading",
     tag: "h1",
   },
-  {
+  /*{
     id: 2,
     html: "I am a <strong>paragraph</strong>",
     tag: "p",
   },
   {
     id: 3,
-    html: "/im",
-    tag: "img",
-  }
+    html: "I am a <strong>paragraph</strong>",
+    tag: "p",
+  },
+  {
+    id: 4,
+    html: "I am a <strong>paragraph</strong>",
+    tag: "p",
+  }*/
 ]
 
-
 const EditablePage = () => {
-  const [blocks, setBlocks] = useState([initialBlock])
+  /** Each Block will be a container */
+  const [blocks, setBlocks] = useState(testSetup)
 
 
-  const updateBlocksHandler = ( updatedBlock: editableBlock ) => {
-    const index = blocks.map((b) => b.id).indexOf(updatedBlock.id);
+  const updatePageHandler = ( updatedBlock: editableBlock ) => {
+    const index = blocks.map((b) => b.id).indexOf(updatedBlock.id)
     const updatedBlocks = [...blocks];
     updatedBlocks[index] = {
       ...updatedBlocks[index],
@@ -50,13 +55,16 @@ const EditablePage = () => {
       tag: "p",
     };
     const index = blocks.map((block) => block.id).indexOf(currentBlock.id);
-    setBlocks([...blocks, newBlock]);
+    const updatedBlocks = [...blocks]
+    //console.log(updatedBlocks)
+    updatedBlocks.splice(index + 1, 0, newBlock);
+    setBlocks(updatedBlocks)
   }
 
   const deleteBlocksHandler = ( currentBlock: editableBlock ) => {
     console.log(currentBlock)
   }
-
+  
   return (
     <div className="Page">
       {blocks.map((block, key) => {
@@ -66,7 +74,7 @@ const EditablePage = () => {
             _id={block.id}
             _tag={block.tag} 
             _html={block.html}
-            updateBlock={updateBlocksHandler}
+            updatePage={updatePageHandler}
             addBlock={addBlocksHandler}
             deleteBlock={deleteBlocksHandler}
 
@@ -74,6 +82,7 @@ const EditablePage = () => {
         );
       })}
     </div>
+    //<div> 1</div>
  
   )
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 import EditablePage from '../components/EditablePage'
-const plz = () => {
+const NewPage = () => {
   return (
     <EditablePage/>
   )
 }
 
-export default plz
+export default NewPage
